@@ -55,7 +55,7 @@ export function Logo({ className }: { className?: string }) {
         />
       </svg>
        <span className="text-xl font-bold tracking-tight text-foreground">
-        Parkway
+        SSL
       </span>
     </div>
   );

@@ -14,13 +14,16 @@ export function Footer() {
       <div className="container grid grid-cols-1 gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
         <div className="flex flex-col items-start gap-4">
           <Link href="/">
-            <Logo />
+            <div className="flex items-center gap-2">
+                <Logo />
+                <span className="text-lg font-semibold">Airport Parking Services</span>
+            </div>
           </Link>
           <p className="text-sm text-muted-foreground">
             Your seamless airport parking experience.
           </p>
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Parkway Booking. All rights reserved.
+            &copy; {new Date().getFullYear()} SSL Airport Parking Services. All rights reserved.
           </p>
         </div>
         <div className="md:col-span-2">

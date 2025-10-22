@@ -10,7 +10,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { parkingOptions, parkingLocations } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Car, CheckCircle2, Plane, CalendarDays, MapPin } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const ICONS: { [key: string]: React.ElementType } = {
     Plane,
@@ -36,10 +35,10 @@ export function ParkingDashboard() {
     <div className="space-y-12">
       <section className="text-center">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-headline">
-          Seamless Airport Parking
+          Our Parking Solutions
         </h1>
         <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mt-4">
-          Book your spot in minutes. Drive with peace of mind.
+          Choose a location and the package that fits your travel needs.
         </p>
       </section>
 
@@ -99,7 +98,7 @@ export function ParkingDashboard() {
                   {parkingOptions.map((option) => (
                     <TableRow key={option.id}>
                       <TableCell className="font-medium">{option.title}</TableCell>
-                      <TableCell className="text-muted-foreground">{option.id === 'short-stay' ? 'Quick trips' : option.id === 'long-stay' ? 'Vacations' : 'Convenience'}</TableCell>
+                      <TableCell className="text-muted-foreground">{option.bestFor}</TableCell>
                       <TableCell className="text-right">R {option.price.toFixed(2)}</TableCell>
                     </TableRow>
                   ))}
@@ -114,7 +113,7 @@ export function ParkingDashboard() {
       <section className="space-y-6">
         <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tighter font-headline">2. Select Your Parking Type</h2>
-            <p className="text-muted-foreground mt-2">Choose the option that best fits your travel needs.</p>
+            <p className="text-muted-foreground mt-2">Choose the option that best fits your travel needs. Login required to proceed.</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {parkingOptions.map((option) => {

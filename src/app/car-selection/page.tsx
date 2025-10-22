@@ -12,6 +12,15 @@ function CarSelectionContent() {
         price: searchParams.get('price') || '',
     };
     
+    // This is a placeholder for a real auth check
+    const isLoggedIn = true; // In a real app, this would come from a context or auth hook
+
+    if (!isLoggedIn) {
+        // You can redirect to login or show a message
+        // For now, we're assuming the user gets here after logging in as per the updated flow.
+        // A more robust solution would use middleware or a HOC for protected routes.
+    }
+    
     return <CarSelectionForm queryParams={queryParams} />;
 }
 

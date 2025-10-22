@@ -33,6 +33,7 @@ import { UploadCloud, ArrowRight } from "lucide-react";
 const formSchema = z.object({
   carType: z.string().min(1, "Please select a car type."),
   carModel: z.string().optional(),
+  licensePlate: z.string().min(1, "Please enter your license plate."),
   carPhoto: z.any().optional(),
 });
 
@@ -58,6 +59,7 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
     defaultValues: {
       carType: "",
       carModel: "",
+      licensePlate: "",
     },
   });
 
@@ -74,12 +76,13 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
     const newQueryParams = new URLSearchParams({
         ...queryParams,
         carType: values.carType,
+        licensePlate: values.licensePlate,
     });
     router.push(`/checkout?${newQueryParams.toString()}`);
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-lg">
+    <Card className="w-full max-w-3xl mx-auto shadow-lg">
       <CardHeader>
         <CardTitle>3. Add Your Car Details</CardTitle>
         <CardDescription>
@@ -118,12 +121,31 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
                     </FormItem>
                   )}
                 />
+                 <FormField
+                  control={form.control}
+                  name="licensePlate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>License Plate</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="e.g. ABC 123 GP"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Your vehicle's license plate number.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="carModel"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Car Model</FormLabel>
+                      <FormLabel>Car Model (Optional)</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Coming Soon"
@@ -144,10 +166,10 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
                 control={form.control}
                 name="carPhoto"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col">
                     <FormLabel>Upload Car Photo (Optional)</FormLabel>
-                    <FormControl>
-                      <div className="relative flex justify-center items-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted transition-colors">
+                    <FormControl className="flex-grow">
+                      <div className="relative flex justify-center items-center w-full h-full min-h-[150px] border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted transition-colors">
                         <Input
                           id="carPhoto"
                           type="file"
@@ -166,7 +188,7 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
                         )}
                       </div>
                     </FormControl>
-                    <FormDescription>
+                    <FormDescription className="mt-2">
                       {photoName || "A photo helps our team identify your vehicle."}
                     </FormDescription>
                     <FormMessage />

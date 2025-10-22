@@ -107,14 +107,6 @@ export function AuthModal({
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
-               <Alert>
-                  <Terminal className="h-4 w-4" />
-                  <AlertTitle>Demo Credentials</AlertTitle>
-                  <AlertDescription>
-                    <p>Email: hamzah.m@sedgent.com</p>
-                    <p>Password: HM-ADMIN</p>
-                  </AlertDescription>
-                </Alert>
               <Button type="submit" className="w-full">
                 Login
               </Button>

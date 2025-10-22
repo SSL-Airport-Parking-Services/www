@@ -6,7 +6,7 @@ import { Footer } from "@/components/common/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Parkway Booking",
+  title: "SSL Airport Parking Services",
   description: "Seamless Airport Parking",
 };
 

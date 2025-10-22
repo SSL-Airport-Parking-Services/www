@@ -6,6 +6,7 @@ export interface ParkingOption {
     description: string;
     price: number;
     icon: any;
+    bestFor: string;
 }
 
 export interface Car {

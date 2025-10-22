@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { CountdownTimer } from "@/components/confirmation/CountdownTimer";
-import { CheckCircle, Bell, LifeBuoy } from "lucide-react";
+import { CheckCircle, Bell, LifeBuoy, Fingerprint } from "lucide-react";
 import { parkingOptions, parkingLocations } from "@/lib/data";
 
 interface BookingConfirmationProps {
@@ -16,6 +16,7 @@ interface BookingConfirmationProps {
         type: string;
         price: string;
         carType: string;
+        licensePlate: string;
     }
 }
 
@@ -26,6 +27,7 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
     const locationName = parkingLocations.find(l => l.id === queryParams.location)?.name || 'N/A';
     const parkingType = parkingOptions.find(p => p.id === queryParams.type)?.title || 'N/A';
     const carType = queryParams.carType || 'N/A';
+    const licensePlate = queryParams.licensePlate || 'N/A';
     const bookingId = Math.random().toString(36).substring(2, 9).toUpperCase();
 
     const handleNotificationRequest = () => {
@@ -54,6 +56,7 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
                     <div className="flex justify-between"><span className="text-muted-foreground">Location:</span> <span className="font-semibold">{locationName}</span></div>
                     <div className="flex justify-between"><span className="text-muted-foreground">Parking Type:</span> <span className="font-semibold">{parkingType}</span></div>
                     <div className="flex justify-between"><span className="text-muted-foreground">Vehicle:</span> <span className="font-semibold">{carType}</span></div>
+                    <div className="flex justify-between"><span className="text-muted-foreground">License Plate:</span> <span className="font-semibold">{licensePlate}</span></div>
                 </CardContent>
             </Card>
 
@@ -74,7 +77,7 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
 
              <div className="text-center">
                 <Button asChild>
-                    <Link href="/">Book Another Spot</Link>
+                    <Link href="/options">Book Another Spot</Link>
                 </Button>
             </div>
         </div>

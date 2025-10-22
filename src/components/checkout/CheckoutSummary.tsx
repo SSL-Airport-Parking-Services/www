@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { parkingOptions, parkingLocations } from "@/lib/data";
-import { MapPin, Calendar, Car, Tag } from "lucide-react";
+import { MapPin, Calendar, Car, Tag, Fingerprint } from "lucide-react";
 
 interface CheckoutSummaryProps {
     queryParams: {
@@ -11,6 +11,7 @@ interface CheckoutSummaryProps {
         type: string;
         price: string;
         carType: string;
+        licensePlate: string;
     }
 }
 
@@ -24,6 +25,7 @@ export function CheckoutSummary({ queryParams }: CheckoutSummaryProps) {
         { icon: MapPin, label: "Location", value: locationName },
         { icon: Calendar, label: "Parking Type", value: parkingType },
         { icon: Car, label: "Vehicle", value: queryParams.carType || "Not specified" },
+        { icon: Fingerprint, label: "License Plate", value: queryParams.licensePlate || "Not specified" },
         { icon: Tag, label: "Daily Rate", value: `R${parseFloat(price).toFixed(2)}` },
     ];
 

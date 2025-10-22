@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, LogOut, User, LifeBuoy } from "lucide-react";
+import { Menu, LogOut } from "lucide-react";
 import { Logo } from "@/components/icons/Logo";
 import { AuthModal } from "@/components/auth/AuthModal";
 import {
@@ -20,22 +20,35 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLoginSuccess = (email: string) => {
     setIsLoggedIn(true);
     setUserEmail(email);
+    // Assuming the name is part of the email before the '@'
+    const name = email.split('@')[0];
+    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+    setUserName(capitalizedName)
     setIsModalOpen(false);
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUserEmail("");
+    setUserName("");
   };
 
   const NavLinks = () => (
     <>
+      <Link
+        href="/options"
+        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        Parking Options
+      </Link>
       <Link
         href="/support"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
@@ -50,11 +63,15 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Logo />
-          </Link>
+          <div className="flex items-center">
+            <Link href="/" className="mr-6 flex items-center space-x-2">
+              <Logo />
+            </Link>
+            {isLoggedIn && <p className="hidden md:block text-sm font-medium">Welcome, {userName}!</p>}
+          </div>
 
-          <div className="hidden flex-1 items-center space-x-4 md:flex">
+
+          <div className="hidden flex-1 items-center justify-center space-x-4 md:flex">
             <nav className="flex items-center space-x-6 text-sm font-medium">
               <NavLinks />
             </nav>
@@ -83,7 +100,7 @@ export function Header() {
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        Admin
+                        {userName}
                       </p>
                       <p className="text-xs leading-none text-muted-foreground">
                         {userEmail}
@@ -119,6 +136,7 @@ export function Header() {
                     <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
                       <Logo />
                     </Link>
+                    {isLoggedIn && <p className="text-sm font-medium">Welcome, {userName}!</p>}
                     <NavLinks />
                   </div>
                   {!isLoggedIn && (

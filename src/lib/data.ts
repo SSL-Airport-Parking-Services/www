@@ -4,23 +4,26 @@ export const parkingOptions: ParkingOption[] = [
   {
     id: 'short-stay',
     title: 'Short Stay',
-    description: 'Perfect for drop-offs and quick trips. Located closest to the terminals.',
+    description: 'Perfect for quick trips of 1-3 days. Located closest to the terminals for maximum convenience.',
     price: 150,
     icon: 'Plane',
+    bestFor: '1-3 Days'
   },
   {
     id: 'long-stay',
     title: 'Long Stay',
-    description: 'Ideal for travelers leaving for multiple days. Secure and affordable.',
-    price: 450,
+    description: 'Ideal for travelers on longer journeys (4+ days). Secure, affordable, with a free shuttle service.',
+    price: 120,
     icon: 'CalendarDays',
+    bestFor: '4+ Days'
   },
   {
     id: 'valet',
     title: 'Valet Parking',
-    description: 'The ultimate convenience. Drop your car off at the terminal and go.',
-    price: 800,
+    description: 'The ultimate convenience for any trip length. Drop your car off at the terminal and go.',
+    price: 350,
     icon: 'Car',
+    bestFor: 'Ultimate Convenience'
   },
 ];
 
