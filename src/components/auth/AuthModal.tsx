@@ -70,7 +70,7 @@ export function AuthModal({
         <DialogHeader>
           <DialogTitle>Login / Sign Up</DialogTitle>
           <DialogDescription>
-            Enter your credentials to continue. For demo purposes, use hamzah.m@sedgent.com and HM-ADMIN.
+            Enter your credentials to continue.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
