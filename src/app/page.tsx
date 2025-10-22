@@ -7,22 +7,22 @@ import Link from "next/link";
 
 const testimonials = [
   {
-    name: "Samantha R.",
+    name: "Hamzah M.",
     role: "Frequent Flyer",
     quote: "SSL Airport Parking has been a game-changer for my business trips. The valet service is worth every penny. So convenient!",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    avatar: "https://avatar.vercel.sh/HM.png",
   },
   {
-    name: "David L.",
+    name: "Samuel U.",
     role: "Family Vacationer",
     quote: "We used the long-stay option for our two-week holiday. The peace of mind knowing our car was secure was priceless. The shuttle was quick too!",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704e",
+    avatar: "https://avatar.vercel.sh/SU.png",
   },
   {
-    name: "Jessica P.",
-    role: "Weekend Traveler",
+    name: "SSL",
+    role: "The Team",
     quote: "Super easy to book online. The short-stay parking is so close to the terminal. I was checked in within minutes of parking.",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704f",
+    avatar: "https://avatar.vercel.sh/SSL.png",
   },
 ];
 
