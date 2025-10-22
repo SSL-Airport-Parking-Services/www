@@ -1,3 +1,5 @@
+"use client";
+
 import { CheckoutSummary } from "@/components/checkout/CheckoutSummary";
 import { PaymentOptions } from "@/components/checkout/PaymentOptions";
 import { Suspense } from 'react';

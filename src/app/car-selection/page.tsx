@@ -1,3 +1,5 @@
+"use client";
+
 import { CarSelectionForm } from "@/components/car-selection/CarSelectionForm";
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';

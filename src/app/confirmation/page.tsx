@@ -1,3 +1,5 @@
+"use client";
+
 import { BookingConfirmation } from "@/components/confirmation/BookingConfirmation";
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
