@@ -67,7 +67,7 @@ export function Header() {
             <Link href="/" className="mr-6 flex items-center space-x-2">
               <Logo />
             </Link>
-            {isLoggedIn && <p className="hidden md:block text-sm font-medium">Welcome, {userName}!</p>}
+            {isLoggedIn && <p className="hidden md:block text-sm font-medium animate-fade-in">Welcome, {userName}!</p>}
           </div>
 
 

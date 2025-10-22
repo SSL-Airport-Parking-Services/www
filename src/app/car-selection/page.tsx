@@ -27,7 +27,7 @@ function CarSelectionContent() {
 
 export default function CarSelectionPage() {
     return (
-        <div className="container py-8 md:py-12">
+        <div className="container py-8 md:py-12 animate-fade-in">
             <Suspense fallback={<div>Loading...</div>}>
                 <CarSelectionContent />
             </Suspense>

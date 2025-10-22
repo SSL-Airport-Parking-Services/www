@@ -47,7 +47,7 @@ export function ParkingDashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedOptionForRedirect, setSelectedOptionForRedirect] = useState<{
     pathname: string;
-    query: { location: string; type: string; price: number };
+    query: { location: string; type: string; price: string };
   } | null>(null);
 
   const mapPlaceholder = PlaceHolderImages.find(
@@ -64,7 +64,7 @@ export function ParkingDashboard() {
       query: {
         location: selectedLocation,
         type: option.id,
-        price: option.price,
+        price: String(option.price),
       },
     };
 
@@ -83,6 +83,7 @@ export function ParkingDashboard() {
     if (selectedOptionForRedirect) {
       const params = new URLSearchParams(selectedOptionForRedirect.query as any);
       router.push(`${selectedOptionForRedirect.pathname}?${params.toString()}`);
+      setSelectedOptionForRedirect(null); 
     }
   };
 

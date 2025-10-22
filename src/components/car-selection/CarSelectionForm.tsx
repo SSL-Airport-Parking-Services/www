@@ -82,7 +82,7 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
   }
 
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
+    <Card className="w-full max-w-3xl mx-auto shadow-lg animate-slide-in-from-bottom">
       <CardHeader>
         <CardTitle>3. Add Your Car Details</CardTitle>
         <CardDescription>
@@ -148,13 +148,13 @@ export function CarSelectionForm({ queryParams }: CarSelectionFormProps) {
                       <FormLabel>Car Model (Optional)</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Coming Soon"
+                          placeholder="e.g. Toyota Corolla"
                           {...field}
-                          disabled
+                           disabled
                         />
                       </FormControl>
                       <FormDescription>
-                        Specific model selection will be available soon.
+                        This feature is coming soon.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
