@@ -36,7 +36,7 @@ const stats = [
 export default function Home() {
     const heroImage = PlaceHolderImages.find(p => p.id === 'car-upload-placeholder');
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col animate-fade-in">
         <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-center text-white">
             {heroImage && 
                 <Image 
@@ -48,7 +48,7 @@ export default function Home() {
                 />
             }
             <div className="absolute inset-0 bg-black/60" />
-            <div className="relative z-10 p-4 space-y-4">
+            <div className="relative z-10 p-4 space-y-4 animate-slide-in-from-bottom">
                 <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-shadow-lg">
                     Your Journey Begins with Peace of Mind
                 </h1>
@@ -64,10 +64,10 @@ export default function Home() {
         <section className="bg-muted py-12 md:py-20">
             <div className="container">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    {stats.map(stat => {
+                    {stats.map((stat, index) => {
                         const Icon = stat.icon;
                         return (
-                            <div key={stat.label} className="flex flex-col items-center">
+                            <div key={stat.label} className="flex flex-col items-center animate-fade-in" style={{animationDelay: `${index * 150}ms`}}>
                                 <Icon className="h-10 w-10 text-primary mb-2"/>
                                 <p className="text-2xl md:text-3xl font-bold">{stat.value}</p>
                                 <p className="text-sm text-muted-foreground">{stat.label}</p>
@@ -80,10 +80,10 @@ export default function Home() {
 
         <section className="py-12 md:py-20">
             <div className="container text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8">Why Travelers Trust Us</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 animate-slide-in-from-bottom">Why Travelers Trust Us</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {testimonials.map((testimonial) => (
-                        <Card key={testimonial.name} className="text-left">
+                    {testimonials.map((testimonial, index) => (
+                        <Card key={testimonial.name} className="text-left animate-slide-in-from-bottom" style={{animationDelay: `${index * 200}ms`}}>
                             <CardContent className="pt-6">
                                 <div className="flex items-start gap-4">
                                     <Image src={testimonial.avatar} alt={testimonial.name} width={48} height={48} className="rounded-full"/>
@@ -101,7 +101,7 @@ export default function Home() {
         </section>
 
          <section className="bg-primary text-primary-foreground py-12 md:py-20">
-            <div className="container text-center">
+            <div className="container text-center animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-bold">Ready for a seamless trip?</h2>
                 <p className="mt-2 text-lg opacity-90">Book your secure parking spot today.</p>
                 <Button asChild size="lg" variant="secondary" className="mt-6">

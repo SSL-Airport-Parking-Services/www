@@ -68,7 +68,7 @@ export function AuthModal({
         <DialogHeader>
           <DialogTitle>Admin Login</DialogTitle>
           <DialogDescription>
-            Enter your credentials to access the admin dashboard.
+            Enter your credentials to access the admin dashboard. This is a simulation.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -81,7 +81,7 @@ export function AuthModal({
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="admin@example.com" {...field} />
+                      <Input placeholder="hamzah.m@sedgent.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -94,7 +94,7 @@ export function AuthModal({
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="••••••••" {...field} />
+                      <Input type="password" placeholder="HM-ADMIN" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
