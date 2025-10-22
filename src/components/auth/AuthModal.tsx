@@ -51,8 +51,10 @@ export function AuthModal({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    // This is a simulated login.
+    // In a real app, you would have sign-up and more robust login logic.
     if (
-      values.email === "hamzah.m@sedgent.com" &&
+      values.email.toLowerCase() === "hamzah.m@sedgent.com" &&
       values.password === "HM-ADMIN"
     ) {
       setError(null);
@@ -66,9 +68,9 @@ export function AuthModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Admin Login</DialogTitle>
+          <DialogTitle>Login / Sign Up</DialogTitle>
           <DialogDescription>
-            Enter your credentials to access the admin dashboard. This is a simulation.
+            Enter your credentials to continue. For demo purposes, use hamzah.m@sedgent.com and HM-ADMIN.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -81,7 +83,7 @@ export function AuthModal({
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="hamzah.m@sedgent.com" {...field} />
+                      <Input placeholder="you@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -94,7 +96,7 @@ export function AuthModal({
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="HM-ADMIN" {...field} />
+                      <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -108,7 +110,7 @@ export function AuthModal({
                 </Alert>
               )}
               <Button type="submit" className="w-full">
-                Login
+                Continue
               </Button>
             </form>
           </Form>
