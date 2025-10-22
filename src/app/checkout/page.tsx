@@ -1,19 +1,38 @@
 "use client";
 
+import { useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 import { CheckoutSummary } from "@/components/checkout/CheckoutSummary";
 import { PaymentOptions } from "@/components/checkout/PaymentOptions";
 import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 
 function CheckoutContent() {
+    const { isLoggedIn } = useAuth();
+    const router = useRouter();
     const searchParams = useSearchParams();
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            router.push('/options');
+        }
+    }, [isLoggedIn, router]);
+
     const queryParams: {[key: string]: string} = {};
     for (const [key, value] of searchParams.entries()) {
         queryParams[key] = value;
     }
     
+    if (!isLoggedIn) {
+        return (
+            <div className="container py-8 md:py-12 text-center">
+                <p>Redirecting...</p>
+            </div>
+        )
+    }
+
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start animate-slide-in-from-bottom">
             <div className="space-y-8">
                  <CheckoutSummary queryParams={queryParams} />
             </div>
@@ -28,7 +47,7 @@ function CheckoutContent() {
 export default function CheckoutPage() {
     return (
         <div className="container py-8 md:py-12">
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className="text-center">Loading...</div>}>
                 <CheckoutContent />
             </Suspense>
         </div>

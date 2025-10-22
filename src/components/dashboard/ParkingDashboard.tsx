@@ -31,6 +31,7 @@ import { parkingOptions, parkingLocations } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Car, CheckCircle2, Plane, CalendarDays, MapPin } from "lucide-react";
 import { AuthModal } from "@/components/auth/AuthModal";
+import { useAuth } from "@/context/AuthContext";
 
 const ICONS: { [key: string]: React.ElementType } = {
   Plane,
@@ -40,11 +41,11 @@ const ICONS: { [key: string]: React.ElementType } = {
 
 export function ParkingDashboard() {
   const router = useRouter();
+  const { isLoggedIn } = useAuth();
   const [selectedLocation, setSelectedLocation] = useState(
     parkingLocations[0].id
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedOptionForRedirect, setSelectedOptionForRedirect] = useState<{
     pathname: string;
     query: { location: string; type: string; price: string };
@@ -78,7 +79,6 @@ export function ParkingDashboard() {
   };
 
   const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
     setIsModalOpen(false);
     if (selectedOptionForRedirect) {
       const params = new URLSearchParams(selectedOptionForRedirect.query as any);
@@ -103,7 +103,7 @@ export function ParkingDashboard() {
           </p>
         </section>
 
-        <Card className="shadow-lg animate-slide-in-from-bottom" style={{animationDelay: '150ms'}}>
+        <Card className="shadow-lg animate-slide-in-from-bottom bg-card/50 border-border/20" style={{animationDelay: '150ms'}}>
           <CardHeader>
             <CardTitle>1. Choose Your Parking Location</CardTitle>
             <CardDescription>
@@ -199,7 +199,7 @@ export function ParkingDashboard() {
               return (
                 <Card
                   key={option.id}
-                  className="flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 animate-slide-in-from-bottom"
+                  className="flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 animate-slide-in-from-bottom bg-card/50 border-border/20"
                   style={{animationDelay: `${450 + index * 150}ms`}}
                 >
                   <CardHeader>

@@ -3,11 +3,10 @@
 import { useState } from "react";
 import Link from 'next/link';
 import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CountdownTimer } from "@/components/confirmation/CountdownTimer";
-import { CheckCircle, Bell, LifeBuoy, Fingerprint } from "lucide-react";
+import { CheckCircle, Bell, LifeBuoy } from "lucide-react";
 import { parkingOptions, parkingLocations } from "@/lib/data";
 
 interface BookingConfirmationProps {
@@ -39,8 +38,8 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
     };
 
     return (
-        <div className="w-full max-w-2xl mx-auto space-y-8">
-            <div className="text-center space-y-2">
+        <div className="w-full max-w-2xl mx-auto space-y-8 animate-fade-in">
+            <div className="text-center space-y-2 animate-slide-in-from-bottom">
                 <CheckCircle className="mx-auto h-16 w-16 text-green-500" />
                 <h1 className="text-3xl font-bold">Booking Confirmed!</h1>
                 <p className="text-muted-foreground">
@@ -48,11 +47,11 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
                 </p>
             </div>
 
-            <Card className="shadow-lg">
+            <Card className="shadow-lg animate-slide-in-from-bottom" style={{animationDelay: '150ms'}}>
                 <CardHeader>
                     <CardTitle>Your Booking Details</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-3 text-sm">
                     <div className="flex justify-between"><span className="text-muted-foreground">Location:</span> <span className="font-semibold">{locationName}</span></div>
                     <div className="flex justify-between"><span className="text-muted-foreground">Parking Type:</span> <span className="font-semibold">{parkingType}</span></div>
                     <div className="flex justify-between"><span className="text-muted-foreground">Vehicle:</span> <span className="font-semibold">{carType}</span></div>
@@ -60,9 +59,11 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
                 </CardContent>
             </Card>
 
-            <CountdownTimer />
+            <div className="animate-slide-in-from-bottom" style={{animationDelay: '300ms'}}>
+                <CountdownTimer />
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-slide-in-from-bottom" style={{animationDelay: '450ms'}}>
                 <Button variant="outline" onClick={handleNotificationRequest} disabled={notificationEnabled}>
                     <Bell className="mr-2 h-4 w-4" />
                     {notificationEnabled ? 'Notifications Enabled' : 'Get Status Updates'}
@@ -75,7 +76,7 @@ export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
                 </Button>
             </div>
 
-             <div className="text-center">
+             <div className="text-center animate-fade-in" style={{animationDelay: '600ms'}}>
                 <Button asChild>
                     <Link href="/options">Book Another Spot</Link>
                 </Button>

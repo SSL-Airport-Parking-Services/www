@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Check, Star, Users, Briefcase, Car } from "lucide-react";
 import Image from "next/image";
@@ -49,10 +49,10 @@ export default function Home() {
             }
             <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 p-4 space-y-4 animate-slide-in-from-bottom">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-shadow-lg">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter !leading-tight">
                     Your Journey Begins with Peace of Mind
                 </h1>
-                <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-200">
+                <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-300">
                     SSL Airport Parking offers secure, reliable, and convenient parking solutions so you can focus on your trip, not your car.
                 </p>
                 <Button asChild size="lg" className="mt-4">
@@ -61,7 +61,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section className="bg-muted py-12 md:py-20">
+        <section className="bg-background/50 py-12 md:py-20">
             <div className="container">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     {stats.map((stat, index) => {
@@ -83,7 +83,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-8 animate-slide-in-from-bottom">Why Travelers Trust Us</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <Card key={testimonial.name} className="text-left animate-slide-in-from-bottom" style={{animationDelay: `${index * 200}ms`}}>
+                        <Card key={testimonial.name} className="text-left animate-slide-in-from-bottom bg-card/50 border-border/20" style={{animationDelay: `${index * 200}ms`}}>
                             <CardContent className="pt-6">
                                 <div className="flex items-start gap-4">
                                     <Image src={testimonial.avatar} alt={testimonial.name} width={48} height={48} className="rounded-full"/>
@@ -100,11 +100,11 @@ export default function Home() {
             </div>
         </section>
 
-         <section className="bg-primary text-primary-foreground py-12 md:py-20">
+         <section className="bg-primary/10 text-primary-foreground py-12 md:py-20">
             <div className="container text-center animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-bold">Ready for a seamless trip?</h2>
                 <p className="mt-2 text-lg opacity-90">Book your secure parking spot today.</p>
-                <Button asChild size="lg" variant="secondary" className="mt-6">
+                <Button asChild size="lg" className="mt-6">
                     <Link href="/options">
                         <Car className="mr-2 h-5 w-5"/>
                         Let's Get Started

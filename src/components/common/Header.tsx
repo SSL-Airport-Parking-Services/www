@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, LogOut } from "lucide-react";
@@ -16,28 +17,32 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/context/AuthContext";
 
 export function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
-  const [userName, setUserName] = useState("");
+  const { isLoggedIn, userEmail, userName, logout } = useAuth();
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
-  const handleLoginSuccess = (email: string) => {
-    setIsLoggedIn(true);
-    setUserEmail(email);
-    // Assuming the name is part of the email before the '@'
-    const name = email.split('@')[0];
-    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
-    setUserName(capitalizedName)
-    setIsModalOpen(false);
+
+  const handleLoginClick = () => {
+    setIsModalOpen(true);
+    setIsRedirecting(true); 
   };
+  
+  const handleLoginSuccess = () => {
+    setIsModalOpen(false);
+    if(isRedirecting) {
+        router.push('/options');
+        setIsRedirecting(false);
+    }
+  }
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserEmail("");
-    setUserName("");
+    logout();
+    router.push('/');
   };
 
   const NavLinks = () => (
@@ -61,7 +66,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center">
           <div className="flex items-center">
             <Link href="/" className="mr-6 flex items-center space-x-2">
@@ -91,7 +96,7 @@ export function Header() {
                         alt={userEmail}
                       />
                       <AvatarFallback>
-                        {userEmail.charAt(0).toUpperCase()}
+                        {userName ? userName.charAt(0).toUpperCase() : ''}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -116,7 +121,7 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <Button
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleLoginClick}
                 className="hidden md:inline-flex"
               >
                 Login / Sign Up
@@ -142,8 +147,8 @@ export function Header() {
                   {!isLoggedIn && (
                     <Button
                       onClick={() => {
-                        setIsModalOpen(true);
                         setIsMobileMenuOpen(false);
+                        handleLoginClick();
                       }}
                     >
                       Login / Sign Up

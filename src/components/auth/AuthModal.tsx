@@ -23,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -32,7 +33,7 @@ const formSchema = z.object({
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onLoginSuccess: (email: string) => void;
+  onLoginSuccess: () => void;
 }
 
 export function AuthModal({
@@ -41,6 +42,7 @@ export function AuthModal({
   onLoginSuccess,
 }: AuthModalProps) {
   const [error, setError] = useState<string | null>(null);
+  const { login } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,7 +60,8 @@ export function AuthModal({
       values.password === "HM-ADMIN"
     ) {
       setError(null);
-      onLoginSuccess(values.email);
+      login(values.email);
+      onLoginSuccess();
     } else {
       setError("Invalid credentials. Please try again.");
     }
@@ -70,7 +73,7 @@ export function AuthModal({
         <DialogHeader>
           <DialogTitle>Login / Sign Up</DialogTitle>
           <DialogDescription>
-            Enter your credentials to continue.
+            Enter your credentials to access your account.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
