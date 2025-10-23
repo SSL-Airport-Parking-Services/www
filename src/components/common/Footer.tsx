@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -9,6 +12,12 @@ import { Logo } from "@/components/icons/Logo";
 import Link from 'next/link';
 
 export function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="w-full border-t bg-card">
       <div className="container grid grid-cols-1 gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
@@ -23,7 +32,7 @@ export function Footer() {
             Your seamless airport parking experience.
           </p>
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} SSL Airport Parking Services. All rights reserved.
+            &copy; {year} SSL Airport Parking Services. All rights reserved.
           </p>
         </div>
         <div className="md:col-span-2">

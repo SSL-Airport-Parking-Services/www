@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from 'next/link';
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,13 +22,18 @@ interface BookingConfirmationProps {
 export function BookingConfirmation({ queryParams }: BookingConfirmationProps) {
     const { toast } = useToast();
     const [notificationEnabled, setNotificationEnabled] = useState(false);
+    const [bookingId, setBookingId] = useState("");
+
+    useEffect(() => {
+        // Generate booking ID on the client side to avoid hydration mismatch
+        setBookingId(Math.random().toString(36).substring(2, 9).toUpperCase());
+    }, []);
 
     const locationName = parkingLocations.find(l => l.id === queryParams.location)?.name || 'N/A';
     const parkingType = parkingOptions.find(p => p.id === queryParams.type)?.title || 'N/A';
     const carType = queryParams.carType || 'N/A';
     const licensePlate = queryParams.licensePlate || 'N/A';
-    const bookingId = Math.random().toString(36).substring(2, 9).toUpperCase();
-
+    
     const handleNotificationRequest = () => {
         toast({
             title: "Notifications Enabled",
